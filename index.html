@@ -181,6 +181,12 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
 .projects .card:nth-child(8){transition-delay:.56s}
 .projects .card:nth-child(9){transition-delay:.64s}
 .projects .card:nth-child(10){transition-delay:.72s}
+
+@keyframes scroll { to { transform: translateX(-50%); } }
+.marquee { display:block !important; }
+.marquee-track { display:flex; gap:44px; width:max-content; animation:scroll 30s linear infinite; font-family:"Space Grotesk",sans-serif; color:var(--muted); white-space:nowrap; }
+.marquee-track span::after { content:"•"; color:var(--accent); margin-left:44px; }
+.marquee-track.rev { animation-direction:reverse; }
 </style>
 </head>
 <body>
