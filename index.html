@@ -189,7 +189,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
 .marquee-track.rev { animation-direction:reverse; }
 
 .hero{position:relative}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(520px circle at var(--mx,70%) var(--my,40%), rgba(159,18,57,.09), transparent 70%)}
+
 .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:70}
 .term{margin-top:30px;max-width:520px;background:#0f1115;color:#e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 12px 32px rgba(17,24,39,.18);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem}
 .term-bar{display:flex;gap:6px;padding:10px 12px;background:#1a1d24}
@@ -202,7 +202,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
 .tilt{transition:transform .25s ease,opacity .6s ease,border-color .25s,box-shadow .25s;will-change:transform}
 
 .hero{position:relative}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(520px circle at var(--mx,70%) var(--my,40%), rgba(159,18,57,.09), transparent 70%)}
+
 .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:70}
 .term{margin-top:30px;max-width:520px;background:#0f1115;color:#e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 12px 32px rgba(17,24,39,.18);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem}
 .term-bar{display:flex;gap:6px;padding:10px 12px;background:#1a1d24}
@@ -243,14 +243,9 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
         <a href="#projects" class="btn btn-primary" data-i18n="cta_work">See my work</a>
         <a href="#contact" class="btn" data-i18n="cta_contact">Get in touch</a>
       </div>
-      <div class="term reveal" aria-hidden="true">
-        <div class="term-bar"><i></i><i></i><i></i></div>
-        <div class="term-body" id="term"></div>
-      </div>
-      <div class="term reveal" aria-hidden="true">
-        <div class="term-bar"><i></i><i></i><i></i></div>
-        <div class="term-body" id="term"></div>
-      </div>
+      <div class="term reveal" aria-hidden="true"><div class="term-bar"><i></i><i></i><i></i></div><div class="term-body" id="term"></div></div>
+      
+      
     </div>
   </section>
 
@@ -313,7 +308,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="church_problem">Church offices juggle members, giving, and departments on paper and spreadsheets.</span></p>
           <p data-i18n="church_desc">Role-based system for Elders, Treasurers, Deacons, and Clerks, with member, department, and giving management.</p>
           <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">Role-based access</span></div>
-          <div class="card-links"><a href="https://kambarage-sda-church.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+          <div class="card-links"><a href="https://kambarage-sda-church.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/church-management.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt"><span class="idx">02</span>
           <span class="role" data-i18n="aea_role">Full-stack · Education</span>
@@ -321,7 +316,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="aea_problem">Students need course resources in one organized place.</span></p>
           <p data-i18n="aea_desc">Digital resource portal for SUA's Agricultural Economics and Agribusiness course.</p>
           <div class="tags"><span class="tag">Full-stack</span><span class="tag">Vercel</span></div>
-          <div class="card-links"><a href="https://aea-portal.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+          <div class="card-links"><a href="https://aea-portal.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/aea-learning-portal.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt"><span class="idx">03</span>
           <span class="role" data-i18n="mhema_role">Full-stack · Agriculture</span>
@@ -329,7 +324,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="mhema_problem">Avocado seedling (miche) nurseries track seed procurement and seedbeds by hand.</span></p>
           <p data-i18n="mhema_desc">Nursery management system for avocado seedlings, currently in active development.</p>
           <div class="tags"><span class="tag">Full-stack</span><span class="tag">Procurement</span><span class="tag">Seedbeds</span></div>
-          <div class="card-links"><a href="https://mhema-avocado-garden.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+          <div class="card-links"><a href="https://mhema-avocado-garden.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/mhema-avocado-garden.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt"><span class="idx">04</span>
           <span class="role" data-i18n="clinic_role">Full-stack · Healthcare</span>
@@ -337,7 +332,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="clinic_problem">Clinics need one system to manage patients, staff, and records without paper.</span></p>
           <p data-i18n="clinic_desc">A hospital management system with role-based access, live in production.</p>
           <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">MUI</span><span class="tag">PostgreSQL</span></div>
-          <div class="card-links"><a href="https://genious-hospital.netlify.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+          <div class="card-links"><a href="https://genious-hospital.netlify.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/hospital-management.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt"><span class="idx">05</span>
           <span class="role" data-i18n="stock_role">Full-stack · Retail & POS</span>
@@ -345,7 +340,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="stock_problem">Small shops lose money to untracked stock and manual sales records.</span></p>
           <p data-i18n="stock_desc">Inventory and point-of-sale system with a bilingual interface and TRA-compliant reporting.</p>
           <div class="tags"><span class="tag">React</span><span class="tag">Inventory</span><span class="tag">POS</span><span class="tag">i18n</span></div>
-          <div class="card-links"><a href="projects/genious-stock.html">Case study &nearr;</a></div>
+          <div class="card-links"><a href="https://genious-stocks.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/genious-stock.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt"><span class="idx">06</span>
           <span class="role" data-i18n="agrovet_role">Full-stack · Agrovet</span>
@@ -353,7 +348,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="agrovet_problem">Agrovet operations need their stock and records kept in one digital system.</span></p>
           <p data-i18n="agrovet_desc">Business management app for agrovet operations, live on Vercel.</p>
           <div class="tags"><span class="tag">Full-stack</span><span class="tag">Vercel</span></div>
-          <div class="card-links"><a href="https://mhema-pearl.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+          <div class="card-links"><a href="https://mhema-pearl.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/agrovet.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt"><span class="idx">07</span>
           <span class="role" data-i18n="azama_role">Full-stack · Agribusiness</span>
@@ -361,7 +356,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="azama_problem">Farmers and agribusinesses need to track produce from farm to market.</span></p>
           <p data-i18n="azama_desc">Farm-to-market management system for GENIOUS-OPEX ENTERPRISES, covering production, sales, and records.</p>
           <div class="tags"><span class="tag">Full-stack</span><span class="tag">PostgreSQL</span><span class="tag">Vercel</span></div>
-          <div class="card-links"><a href="https://agribiz-six.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+          <div class="card-links"><a href="https://agribiz-six.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/azama-ledger.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt">
           <span class="idx">08</span>
@@ -370,7 +365,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong>Problem:</strong> Student associations need one place to manage members, activities and communication.</p>
           <p>Management system for the TUCASA SMC student community at the SMC campus.</p>
           <div class="tags"><span class="tag">Full-stack</span><span class="tag">Management</span><span class="tag">Vercel</span></div>
-          <div class="card-links"><a href="https://tucasa-sua-smc-slt1.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="https://github.com/Genious-520/tucasa-sua-smc" target="_blank" rel="noopener">Code &nearr;</a></div>
+          <div class="card-links"><a href="https://tucasa-sua-smc-slt1.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/tucasa-smc.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt">
           <span class="idx">09</span>
@@ -379,7 +374,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong>Problem:</strong> Designing a house usually means separate drawings, finish lists and estimates that don't connect.</p>
           <p>A house design app for drawing a floor plan and planning the design and finishes, from the first layout to final finishing. Already live.</p>
           <div class="tags"><span class="tag">Full-stack</span><span class="tag">Design tool</span><span class="tag">Live</span></div>
-          <div class="card-links"><a href="https://floorplan-studio-lovat.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="https://github.com/Genious-520/Floorplan-studio" target="_blank" rel="noopener">Code &nearr;</a></div>
+          <div class="card-links"><a href="https://floorplan-studio-lovat.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/floorplan-studio.html">Case study &nearr;</a></div>
         </article>
         <article class="card reveal tilt">
           <span class="idx">10</span>
@@ -388,7 +383,7 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
           <p class="problem"><strong>Problem:</strong> Many businesses still track stock on paper or in spreadsheets, so counts drift from reality.</p>
           <p>Inventory management system with its own website and a built-in system for managing stock.</p>
           <div class="tags"><span class="tag">Inventory</span><span class="tag">Full-stack</span><span class="tag">Vercel</span></div>
-          <div class="card-links"><a href="https://ek-system.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="https://github.com/Genious-520/ek-system" target="_blank" rel="noopener">Code &nearr;</a></div>
+          <div class="card-links"><a href="https://ek-system.vercel.app" target="_blank" rel="noopener">Live demo &nearr;</a><a href="projects/ek-system.html">Case study &nearr;</a></div>
         </article>
 
       </div>
@@ -458,10 +453,11 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
     items.forEach((el) => el.classList.add("in"));
   }
 </script>
+
+
 <script>
 (function(){
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   var bar = document.createElement("div");
   bar.className = "progress";
   document.body.appendChild(bar);
@@ -469,101 +465,6 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
     var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
     bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
   }, {passive:true});
-
-  var hero = document.querySelector(".hero");
-  if (hero && !reduce) {
-    hero.addEventListener("mousemove", function(e){
-      var r = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      hero.style.setProperty("--my", (e.clientY - r.top) + "px");
-    });
-  }
-
-  var co = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if (!en.isIntersecting) return;
-      var el = en.target, end = parseInt(el.dataset.count, 10), t0 = null;
-      function step(ts){
-        if (!t0) t0 = ts;
-        var k = Math.min((ts - t0) / 900, 1);
-        el.textContent = Math.round(end * k);
-        if (k < 1) requestAnimationFrame(step);
-      }
-      if (!reduce) requestAnimationFrame(step);
-      co.unobserve(el);
-    });
-  }, {threshold:.5});
-  document.querySelectorAll("[data-count]").forEach(function(c){ co.observe(c); });
-
-  var term = document.getElementById("term");
-  if (term && !reduce) {
-    var script = [
-      ["cmd", "proot-distro login ubuntu"],
-      ["cmd", "cd ~/portfolio && git pull"],
-      ["cmd", "git add -A && git commit -m \"new case study\""],
-      ["cmd", "git push origin main"],
-      ["ok",  "Deployed to Vercel"],
-      ["ok",  "Live at amos-zabron.vercel.app"]
-    ];
-    var li = 0;
-    function typeLine(){
-      if (li >= script.length) {
-        var c = document.createElement("span");
-        c.className = "caret";
-        term.appendChild(c);
-        return;
-      }
-      var kind = script[li][0], text = script[li][1];
-      var row = document.createElement("div");
-      var pre = document.createElement("span");
-      pre.className = kind === "cmd" ? "prompt" : "ok";
-      pre.textContent = kind === "cmd" ? "$ " : (text.indexOf("Live") === 0 ? "" : "✓ ");
-      var body = document.createElement("span");
-      row.appendChild(pre);
-      row.appendChild(body);
-      term.appendChild(row);
-      var i = 0;
-      (function tick(){
-        body.textContent = text.slice(0, ++i);
-        if (i < text.length) { setTimeout(tick, 26); }
-        else { li++; setTimeout(typeLine, kind === "cmd" ? 500 : 350); }
-      })();
-    }
-    setTimeout(typeLine, 700);
-  }
-
-  if (!reduce && window.matchMedia("(pointer:fine)").matches) {
-    document.querySelectorAll(".tilt").forEach(function(c){
-      c.addEventListener("mousemove", function(e){
-        var r = c.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        c.style.transform = "perspective(900px) rotateX(" + (-y * 5) + "deg) rotateY(" + (x * 5) + "deg)";
-      });
-      c.addEventListener("mouseleave", function(){ c.style.transform = ""; });
-    });
-  }
-})();
-</script>
-<script>
-(function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  var bar = document.createElement("div");
-  bar.className = "progress";
-  document.body.appendChild(bar);
-  window.addEventListener("scroll", function(){
-    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
-    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
-  }, {passive:true});
-
-  var hero = document.querySelector(".hero");
-  if (hero && !reduce) {
-    hero.addEventListener("mousemove", function(e){
-      var r = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      hero.style.setProperty("--my", (e.clientY - r.top) + "px");
-    });
-  }
 
   var co = new IntersectionObserver(function(entries){
     entries.forEach(function(en){

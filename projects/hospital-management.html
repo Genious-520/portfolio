@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hospital Management System | Amos Zabron Mhema</title>
+<meta name="description" content="A hospital management system with role-based access, live in production.">
+<style>
+:root{--bg:#fff;--border:#e5e7eb;--text:#111827;--muted:#4b5563;--soft:#6b7280;--accent:#9f1239}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:24px 0}
+.wrap{width:min(760px,90%);margin:0 auto}
+a{color:var(--text)}
+.back{font-size:.9rem;font-weight:600;color:var(--soft);text-decoration:none}
+.eyebrow{display:block;margin-top:28px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
+h1{font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:10px 0 14px;letter-spacing:-.03em}
+.lead{color:var(--muted);font-size:1.08rem;margin-bottom:20px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.tag{font-size:.78rem;padding:3px 10px;border-radius:6px;background:#f8f9fb;border:1px solid var(--border);color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.btn{padding:11px 20px;border-radius:8px;border:1px solid var(--border);font-weight:600;font-size:.95rem;text-decoration:none}
+.btn-primary{background:var(--text);color:#fff;border-color:var(--text)}
+.block{padding:24px 0;border-top:1px solid var(--border)}
+.block h2{font-size:1.2rem;margin-bottom:8px}
+.block p,.block li{color:var(--muted);max-width:66ch}
+.block ul{padding-left:18px;display:grid;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html#projects">&larr; Back to projects</a>
+  <span class="eyebrow">Healthcare</span>
+  <h1>Hospital Management System</h1>
+  <p class="lead">A hospital management system with role-based access, live in production.</p>
+  <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">MUI</span><span class="tag">PostgreSQL</span></div>
+  <div class="btns"><a class="btn btn-primary" href="https://genious-hospital.netlify.app" target="_blank" rel="noopener">Live demo &nearr;</a></div>
+  <div class="block"><h2>The problem</h2><p>Clinics need one system to manage patients, staff, and records without paper.</p></div>
+  <div class="block"><h2>What it does</h2><ul><li>Patient and staff records in one system.</li><li>Role-based access, so each staff member sees what their role needs.</li><li>Live in production.</li></ul></div>
+  <div class="block"><h2>How it's built</h2><p>Spring Boot backend, React and MUI frontend, PostgreSQL database.</p></div>
+</div>
+</body>
+</html>
