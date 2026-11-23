@@ -165,7 +165,23 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
 .card-links a:hover, .nav-right a:hover { color:var(--accent); }
 .lang-btn:hover { border-color:var(--accent); color:var(--accent); }
 .hero h1 .grad::after { color:var(--accent); }
-.svc-grid{display:grid;gap:12px}@media(min-width:800px){.svc-grid{grid-template-columns:repeat(3,1fr)}}.svc{border:1px solid var(--border);border-radius:12px;padding:22px;background:var(--bg)}.svc h3{font-size:1.15rem;margin-bottom:8px}.svc p{color:var(--muted);font-size:.95rem}</style>
+.svc-grid{display:grid;gap:12px}@media(min-width:800px){.svc-grid{grid-template-columns:repeat(3,1fr)}}.svc{border:1px solid var(--border);border-radius:12px;padding:22px;background:var(--bg)}.svc h3{font-size:1.15rem;margin-bottom:8px}.svc p{color:var(--muted);font-size:.95rem}
+.marquee{display:block !important;padding:18px 0;background:var(--surface);border-block:1px solid var(--border);overflow:hidden}
+.marquee.alt{background:var(--bg)}
+.marquee-track{font-size:1.15rem}
+.marquee-track.rev{animation-direction:reverse}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.projects .card{transition:opacity .6s ease,transform .6s ease,border-color .25s,box-shadow .25s}
+.projects .card:nth-child(2){transition-delay:.08s}
+.projects .card:nth-child(3){transition-delay:.16s}
+.projects .card:nth-child(4){transition-delay:.24s}
+.projects .card:nth-child(5){transition-delay:.32s}
+.projects .card:nth-child(6){transition-delay:.40s}
+.projects .card:nth-child(7){transition-delay:.48s}
+.projects .card:nth-child(8){transition-delay:.56s}
+.projects .card:nth-child(9){transition-delay:.64s}
+.projects .card:nth-child(10){transition-delay:.72s}
+</style>
 </head>
 <body>
 
@@ -198,7 +214,8 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
     </div>
   </section>
 
-  <div class="marquee"><div class="marquee-track"><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>Docker</span><span>Render</span><span>Vercel</span><span>Netlify</span><span>Termux</span><span>Android-first</span><span>Full-stack</span><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>Docker</span><span>Render</span><span>Vercel</span><span>Netlify</span><span>Termux</span><span>Android-first</span><span>Full-stack</span></div></div>
+  <div class="marquee"><div class="marquee-track"><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>Neon</span><span>Docker</span><span>Render</span><span>Vercel</span><span>Netlify</span><span>Java</span><span>JavaScript</span><span>REST APIs</span><span>Role-based auth</span><span>Git & GitHub</span><span>Termux</span><span>Linux (Ubuntu)</span><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>Neon</span><span>Docker</span><span>Render</span><span>Vercel</span><span>Netlify</span><span>Java</span><span>JavaScript</span><span>REST APIs</span><span>Role-based auth</span><span>Git & GitHub</span><span>Termux</span><span>Linux (Ubuntu)</span></div></div>
+<div class="marquee alt"><div class="marquee-track rev"><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>Neon</span><span>Docker</span><span>Render</span><span>Vercel</span><span>Netlify</span><span>Java</span><span>JavaScript</span><span>REST APIs</span><span>Role-based auth</span><span>Git & GitHub</span><span>Termux</span><span>Linux (Ubuntu)</span><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>Neon</span><span>Docker</span><span>Render</span><span>Vercel</span><span>Netlify</span><span>Java</span><span>JavaScript</span><span>REST APIs</span><span>Role-based auth</span><span>Git & GitHub</span><span>Termux</span><span>Linux (Ubuntu)</span></div></div>
 
   <section id="services">
     <div class="wrap">
