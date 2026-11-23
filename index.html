@@ -200,6 +200,19 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
 .term .caret{display:inline-block;width:8px;height:1em;vertical-align:-2px;background:#e5e7eb;animation:caret 1s steps(2) infinite}
 @keyframes caret{50%{opacity:0}}
 .tilt{transition:transform .25s ease,opacity .6s ease,border-color .25s,box-shadow .25s;will-change:transform}
+
+.hero{position:relative}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(520px circle at var(--mx,70%) var(--my,40%), rgba(159,18,57,.09), transparent 70%)}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:70}
+.term{margin-top:30px;max-width:520px;background:#0f1115;color:#e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 12px 32px rgba(17,24,39,.18);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem}
+.term-bar{display:flex;gap:6px;padding:10px 12px;background:#1a1d24}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:#374151;display:block}
+.term-body{padding:14px 16px;min-height:150px;line-height:1.7}
+.term .prompt{color:#9ca3af}
+.term .ok{color:#86efac}
+.term .caret{display:inline-block;width:8px;height:1em;vertical-align:-2px;background:#e5e7eb;animation:caret 1s steps(2) infinite}
+@keyframes caret{50%{opacity:0}}
+.tilt{transition:transform .25s ease,opacity .6s ease,border-color .25s,box-shadow .25s;will-change:transform}
 </style>
 </head>
 <body>
@@ -229,6 +242,10 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
       <div class="cta">
         <a href="#projects" class="btn btn-primary" data-i18n="cta_work">See my work</a>
         <a href="#contact" class="btn" data-i18n="cta_contact">Get in touch</a>
+      </div>
+      <div class="term reveal" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i></div>
+        <div class="term-body" id="term"></div>
       </div>
       <div class="term reveal" aria-hidden="true">
         <div class="term-bar"><i></i><i></i><i></i></div>
@@ -501,6 +518,92 @@ h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
       var pre = document.createElement("span");
       pre.className = kind === "cmd" ? "prompt" : "ok";
       pre.textContent = kind === "cmd" ? "$ " : (text.indexOf("Live") === 0 ? "" : "✓ ");
+      var body = document.createElement("span");
+      row.appendChild(pre);
+      row.appendChild(body);
+      term.appendChild(row);
+      var i = 0;
+      (function tick(){
+        body.textContent = text.slice(0, ++i);
+        if (i < text.length) { setTimeout(tick, 26); }
+        else { li++; setTimeout(typeLine, kind === "cmd" ? 500 : 350); }
+      })();
+    }
+    setTimeout(typeLine, 700);
+  }
+
+  if (!reduce && window.matchMedia("(pointer:fine)").matches) {
+    document.querySelectorAll(".tilt").forEach(function(c){
+      c.addEventListener("mousemove", function(e){
+        var r = c.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        c.style.transform = "perspective(900px) rotateX(" + (-y * 5) + "deg) rotateY(" + (x * 5) + "deg)";
+      });
+      c.addEventListener("mouseleave", function(){ c.style.transform = ""; });
+    });
+  }
+})();
+</script>
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var bar = document.createElement("div");
+  bar.className = "progress";
+  document.body.appendChild(bar);
+  window.addEventListener("scroll", function(){
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+  }, {passive:true});
+
+  var hero = document.querySelector(".hero");
+  if (hero && !reduce) {
+    hero.addEventListener("mousemove", function(e){
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      hero.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  }
+
+  var co = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var el = en.target, end = parseInt(el.dataset.count, 10), t0 = null;
+      function step(ts){
+        if (!t0) t0 = ts;
+        var k = Math.min((ts - t0) / 900, 1);
+        el.textContent = Math.round(end * k);
+        if (k < 1) requestAnimationFrame(step);
+      }
+      if (!reduce) requestAnimationFrame(step);
+      co.unobserve(el);
+    });
+  }, {threshold:.5});
+  document.querySelectorAll("[data-count]").forEach(function(c){ co.observe(c); });
+
+  var term = document.getElementById("term");
+  if (term && !reduce) {
+    var script = [
+      ["cmd", "proot-distro login ubuntu"],
+      ["cmd", "cd ~/portfolio && git pull"],
+      ["cmd", "git add -A && git commit -m \"new case study\""],
+      ["cmd", "git push origin main"],
+      ["ok",  "Deployed to Vercel"],
+      ["ok",  "Live at amos-zabron.vercel.app"]
+    ];
+    var li = 0;
+    function typeLine(){
+      if (li >= script.length) {
+        var c = document.createElement("span");
+        c.className = "caret";
+        term.appendChild(c);
+        return;
+      }
+      var kind = script[li][0], text = script[li][1];
+      var row = document.createElement("div");
+      var pre = document.createElement("span");
+      pre.className = kind === "cmd" ? "prompt" : "ok";
+      pre.textContent = kind === "cmd" ? "$ " : "✓ ";
       var body = document.createElement("span");
       row.appendChild(pre);
       row.appendChild(body);
