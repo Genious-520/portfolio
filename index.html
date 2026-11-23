@@ -252,7 +252,11 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
 html{background:#0f1115 !important}
 footer{margin-top:0 !important;border-top:0 !important;padding:24px 0 36px !important}
 .contact + footer, section.contact ~ footer{border-top:1px solid #262626 !important}
-</style>
+/* CIRCUIT-CSS */
+.btn-primary{background:#2563eb !important;border-color:#2563eb !important;color:#fff !important}
+.btn-primary:hover{background:#1d4ed8 !important;border-color:#1d4ed8 !important}
+.progress{background:#60a5fa !important}
+/* CIRCUIT-CSS */</style>
 </head>
 <body>
 
@@ -570,126 +574,114 @@ footer{margin-top:0 !important;border-top:0 !important;padding:24px 0 36px !impo
   }
 })();
 </script>
-<script>/* DARK-FX */
+<script>/* CIRCUIT-V1 */
 (function(){
-  var old = document.getElementById("net-bg"); if (old) old.remove();
+  var old = document.getElementById("fx-bg"); if (old) old.remove();
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var mobile = window.innerWidth < 700;
   var c = document.createElement("canvas");
   c.id = "fx-bg";
+  c.style.cssText = "position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none";
   document.body.insertBefore(c, document.body.firstChild);
   var ctx = c.getContext("2d"), W, H, dpr = Math.min(window.devicePixelRatio || 1, 2);
-  var CH = "01<>/{}", t = 0, cols = [], screens = [], streams = [], nodes = [];
+  var G = 42, traces = [], pulses = [], last = 0;
 
-  function bez(p, a, b, c2, d){ var u = 1 - p; return u*u*u*a + 3*u*u*p*b + 3*u*p*p*c2 + p*p*p*d; }
-
+  function rnd(n){ return Math.floor(Math.random() * n); }
   function build(){
     W = window.innerWidth; H = window.innerHeight;
     c.width = W * dpr; c.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    mobile = W < 700;
-
-    var colW = mobile ? 22 : 28, n = Math.floor(W / colW);
-    cols = [];
-    for (var i = 0; i < n; i++) cols.push({ x: i*colW + 4, y: Math.random()*H, v: .35 + Math.random()*.9 });
-
-    var sw = Math.min(W * (mobile ? .32 : .18), 200), sh = sw * .55, by = H - sh - 150;
-    screens = mobile
-      ? [{x: W*.5 - sw/2, y: by, w: sw, h: sh}]
-      : [{x: W*.08, y: by + 20, w: sw*.9, h: sh*.9}, {x: W*.5 - sw/2, y: by, w: sw, h: sh}, {x: W*.92 - sw*.9, y: by + 20, w: sw*.9, h: sh*.9}];
-
-    streams = [];
-    for (var s = 0; s < (mobile ? 2 : 3); s++) streams.push({
-      y0: H * (.2 + .6*Math.random()), amp: 60 + Math.random()*90,
-      sp: .0012 + Math.random()*.0018, ph: Math.random()
-    });
-
-    nodes = [];
-    for (var k = 0; k < (mobile ? 24 : 44); k++) nodes.push({
-      x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3
-    });
-  }
-
-  function drawBinary(){
-    ctx.font = "12px ui-monospace, Menlo, Consolas, monospace";
-    ctx.fillStyle = "rgba(255,255,255,0.22)";
-    for (var i = 0; i < cols.length; i++) {
-      var col = cols[i];
-      ctx.fillText(CH.charAt(Math.floor(Math.random()*CH.length)), col.x, col.y);
-      col.y += col.v * 1.6;
-      if (col.y > H + 12) { col.y = -12; col.v = .35 + Math.random()*.9; }
+    traces = [];
+    var walks = W < 700 ? 34 : 70, steps = W < 700 ? 9 : 13;
+    var dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+    for (var w = 0; w < walks; w++) {
+      var x = rnd(Math.ceil(W / G)) * G, y = rnd(Math.ceil(H / G)) * G;
+      var d = dirs[rnd(4)], pts = [{x:x, y:y}];
+      for (var s = 0; s < steps; s++) {
+        if (Math.random() < .4) d = dirs[rnd(4)];
+        var nx = x + d[0] * G, ny = y + d[1] * G;
+        if (nx < 0 || nx > W || ny < 0 || ny > H) { d = [-d[0], -d[1]]; nx = x + d[0] * G; ny = y + d[1] * G; }
+        x = nx; y = ny; pts.push({x:x, y:y});
+      }
+      var cum = [0];
+      for (var i = 1; i < pts.length; i++) cum.push(cum[i-1] + Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y));
+      traces.push({pts:pts, cum:cum, total:cum[cum.length-1]});
     }
+    pulses = [];
+    var np = W < 700 ? 9 : 16;
+    for (var k = 0; k < np; k++) spawn(Math.random() * 400);
   }
-
-  function drawScreens(){
-    for (var i = 0; i < screens.length; i++) {
-      var s = screens[i];
-      ctx.fillStyle = "rgba(255,255,255,0.05)";
-      ctx.fillRect(s.x, s.y, s.w, s.h);
-      ctx.strokeStyle = "rgba(148,163,184,0.25)";
-      ctx.lineWidth = 1.2;
-      ctx.strokeRect(s.x, s.y, s.w, s.h);
-      ctx.beginPath();
-      ctx.moveTo(s.x + s.w/2, s.y + s.h); ctx.lineTo(s.x + s.w/2, s.y + s.h + 18);
-      ctx.moveTo(s.x + s.w*.3, s.y + s.h + 18); ctx.lineTo(s.x + s.w*.7, s.y + s.h + 18);
+  function spawn(startD){
+    var tr = traces[rnd(traces.length)];
+    pulses.push({tr: tr, d: -(startD || 0), len: 90 + Math.random()*110, sp: 70 + Math.random()*120});
+  }
+  function pointAt(tr, d){
+    if (d <= 0) return tr.pts[0];
+    if (d >= tr.total) return tr.pts[tr.pts.length-1];
+    for (var i = 0; i < tr.pts.length - 1; i++) {
+      if (d <= tr.cum[i+1]) {
+        var t = (d - tr.cum[i]) / (tr.cum[i+1] - tr.cum[i]), a = tr.pts[i], b = tr.pts[i+1];
+        return {x: a.x + (b.x-a.x)*t, y: a.y + (b.y-a.y)*t};
+      }
+    }
+    return tr.pts[tr.pts.length-1];
+  }
+  function drawStatic(){
+    ctx.lineWidth = 1;
+    for (var i = 0; i < traces.length; i++) {
+      var tr = traces[i];
+      ctx.strokeStyle = "rgba(59,130,246,0.14)";
+      ctx.beginPath(); ctx.moveTo(tr.pts[0].x, tr.pts[0].y);
+      for (var j = 1; j < tr.pts.length; j++) ctx.lineTo(tr.pts[j].x, tr.pts[j].y);
       ctx.stroke();
-      for (var k = 0; k < 14; k++) {
-        var ly = s.y + ((k*16 + t*.6) % (s.h - 12)) + 6;
-        var ind = (k % 3) * 12;
-        var lw = 18 + ((k*37 + i*19) % 60) * (s.w / 130);
-        ctx.fillStyle = (k % 5 === 0) ? "rgba(255,255,255,0.26)" : "rgba(255,255,255,0.24)";
-        ctx.fillRect(s.x + 12 + ind, ly, Math.min(lw, s.w - 24 - ind), 3);
+      ctx.fillStyle = "rgba(96,165,250,0.45)";
+      for (var k = 0; k < tr.pts.length; k += 2) {
+        ctx.beginPath(); ctx.arc(tr.pts[k].x, tr.pts[k].y, 1.8, 0, Math.PI*2); ctx.fill();
       }
     }
   }
-
-  function drawStreams(){
-    for (var i = 0; i < streams.length; i++) {
-      var s = streams[i];
-      ctx.strokeStyle = "rgba(255,255,255,0.22)";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(-50, s.y0);
-      ctx.bezierCurveTo(W*.3, s.y0 - s.amp, W*.6, s.y0 + s.amp, W + 50, s.y0);
-      ctx.stroke();
-      var p = (s.ph + t*s.sp) % 1;
-      var x = bez(p, -50, W*.3, W*.6, W + 50), y = bez(p, s.y0, s.y0 - s.amp, s.y0 + s.amp, s.y0);
-      ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI*2); ctx.fill();
+  function drawPulse(p, dt){
+    if (p.d < 0) { p.d += p.sp * 0.6; return; }
+    var tr = p.tr, a = Math.max(0, p.d - p.len), b = Math.min(p.d, tr.total);
+    ctx.beginPath();
+    for (var i = 0; i < tr.pts.length - 1; i++) {
+      var s0 = tr.cum[i], s1 = tr.cum[i+1];
+      if (s1 < a || s0 > b || s1 === s0) continue;
+      var A = tr.pts[i], B = tr.pts[i+1];
+      var t0 = Math.max(0, (a - s0) / (s1 - s0)), t1 = Math.min(1, (b - s0) / (s1 - s0));
+      ctx.moveTo(A.x + (B.x-A.x)*t0, A.y + (B.y-A.y)*t0);
+      ctx.lineTo(A.x + (B.x-A.x)*t1, A.y + (B.y-A.y)*t1);
+    }
+    ctx.strokeStyle = "rgba(96,165,250,0.9)";
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+    if (b > 0) {
+      var h = pointAt(tr, b);
+      ctx.shadowColor = "rgba(103,232,249,0.9)"; ctx.shadowBlur = 10;
+      ctx.fillStyle = "#67e8f9";
+      ctx.beginPath(); ctx.arc(h.x, h.y, 2.4, 0, Math.PI*2); ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+    p.d += p.sp * dt;
+    if (p.d - p.len > tr.total) {
+      p.tr = traces[rnd(traces.length)];
+      p.d = -Math.random() * 200;
+      p.len = 90 + Math.random()*110;
+      p.sp = 70 + Math.random()*120;
     }
   }
-
-  function drawNodes(){
-    for (var i = 0; i < nodes.length; i++) {
-      var a = nodes[i];
-      a.x += a.vx; a.y += a.vy;
-      if (a.x < 0 || a.x > W) a.vx *= -1;
-      if (a.y < 0 || a.y > H) a.vy *= -1;
-      for (var j = i + 1; j < nodes.length; j++) {
-        var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx*dx + dy*dy);
-        if (d < 130) {
-          ctx.strokeStyle = "rgba(148,163,184," + (.1 * (1 - d/130)).toFixed(3) + ")";
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-        }
-      }
-      ctx.fillStyle = "rgba(148,163,184,0.55)";
-      ctx.beginPath(); ctx.arc(a.x, a.y, 1.4, 0, Math.PI*2); ctx.fill();
-    }
-  }
-
-  function frame(){
+  function frame(now){
+    var dt = last ? Math.min((now - last) / 1000, .05) : .016;
+    last = now;
     ctx.clearRect(0, 0, W, H);
-    t++;
-    drawBinary();
-    drawScreens();
-    drawStreams();
-    drawNodes();
+    drawStatic();
+    for (var i = 0; i < pulses.length; i++) drawPulse(pulses[i], dt);
     if (!reduce) requestAnimationFrame(frame);
   }
-
-  build(); frame();
-  window.addEventListener("resize", function(){ build(); if (reduce) frame(); });
+  build();
+  requestAnimationFrame(frame);
+  if (reduce) { drawStatic(); }
+  var rt; window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(build, 200); });
 })();
-</script>
+/* CIRCUIT-V1 */</script>
 </body>
 </html>
