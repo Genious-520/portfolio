@@ -184,6 +184,9 @@ footer{border-color:var(--border) !important;color:var(--soft) !important}
 .progress{background:var(--accent) !important}
 #net-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.9}
 .hero::before,.hero::after{display:none !important}
+/* DARK-FX */
+#fx-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hero h1 .grad{color:var(--accent) !important;background:none !important;border:0 !important;box-shadow:none !important}
 </style>
 </head>
 <body>
@@ -308,53 +311,125 @@ footer{border-color:var(--border) !important;color:var(--soft) !important}
     items.forEach((el) => el.classList.add("in"));
   }
 </script>
-<script>/* DARK-SYSTEMS */
+<script>/* DARK-FX */
 (function(){
-  if (document.getElementById("net-bg")) return;
+  var old = document.getElementById("net-bg"); if (old) old.remove();
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var mobile = window.innerWidth < 700;
   var c = document.createElement("canvas");
-  c.id = "net-bg";
+  c.id = "fx-bg";
   document.body.insertBefore(c, document.body.firstChild);
-  var ctx = c.getContext("2d"), W, H, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
-  var N = window.innerWidth < 700 ? 38 : 70, LINK = 150;
-  function size(){
+  var ctx = c.getContext("2d"), W, H, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var CH = "01<>/{}", t = 0, cols = [], screens = [], streams = [], nodes = [];
+
+  function bez(p, a, b, c2, d){ var u = 1 - p; return u*u*u*a + 3*u*u*p*b + 3*u*p*p*c2 + p*p*p*d; }
+
+  function build(){
     W = window.innerWidth; H = window.innerHeight;
     c.width = W * dpr; c.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function init(){
-    size(); nodes = [];
-    for (var i = 0; i < N; i++) nodes.push({
-      x: Math.random() * W, y: Math.random() * H,
-      vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
-      r: Math.random() < .15 ? 2.2 : 1.4
+    mobile = W < 700;
+
+    var colW = mobile ? 22 : 28, n = Math.floor(W / colW);
+    cols = [];
+    for (var i = 0; i < n; i++) cols.push({ x: i*colW + 4, y: Math.random()*H, v: .35 + Math.random()*.9 });
+
+    var sw = Math.min(W * (mobile ? .42 : .24), 260), sh = sw * .6, by = H - sh - 70;
+    screens = mobile
+      ? [{x: W*.5 - sw/2, y: by, w: sw, h: sh}]
+      : [{x: W*.08, y: by + 20, w: sw*.9, h: sh*.9}, {x: W*.5 - sw/2, y: by, w: sw, h: sh}, {x: W*.92 - sw*.9, y: by + 20, w: sw*.9, h: sh*.9}];
+
+    streams = [];
+    for (var s = 0; s < (mobile ? 2 : 3); s++) streams.push({
+      y0: H * (.2 + .6*Math.random()), amp: 60 + Math.random()*90,
+      sp: .0012 + Math.random()*.0018, ph: Math.random()
+    });
+
+    nodes = [];
+    for (var k = 0; k < (mobile ? 24 : 44); k++) nodes.push({
+      x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3
     });
   }
-  function frame(){
-    ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < N; i++) {
+
+  function drawBinary(){
+    ctx.font = "12px ui-monospace, Menlo, Consolas, monospace";
+    ctx.fillStyle = "rgba(34,211,238,0.13)";
+    for (var i = 0; i < cols.length; i++) {
+      var col = cols[i];
+      ctx.fillText(CH.charAt(Math.floor(Math.random()*CH.length)), col.x, col.y);
+      col.y += col.v * 1.6;
+      if (col.y > H + 12) { col.y = -12; col.v = .35 + Math.random()*.9; }
+    }
+  }
+
+  function drawScreens(){
+    for (var i = 0; i < screens.length; i++) {
+      var s = screens[i];
+      ctx.fillStyle = "rgba(34,211,238,0.035)";
+      ctx.fillRect(s.x, s.y, s.w, s.h);
+      ctx.strokeStyle = "rgba(148,163,184,0.25)";
+      ctx.lineWidth = 1.2;
+      ctx.strokeRect(s.x, s.y, s.w, s.h);
+      ctx.beginPath();
+      ctx.moveTo(s.x + s.w/2, s.y + s.h); ctx.lineTo(s.x + s.w/2, s.y + s.h + 18);
+      ctx.moveTo(s.x + s.w*.3, s.y + s.h + 18); ctx.lineTo(s.x + s.w*.7, s.y + s.h + 18);
+      ctx.stroke();
+      for (var k = 0; k < 14; k++) {
+        var ly = s.y + ((k*16 + t*.6) % (s.h - 12)) + 6;
+        var ind = (k % 3) * 12;
+        var lw = 18 + ((k*37 + i*19) % 60) * (s.w / 130);
+        ctx.fillStyle = (k % 5 === 0) ? "rgba(244,63,94,0.22)" : "rgba(34,211,238,0.18)";
+        ctx.fillRect(s.x + 12 + ind, ly, Math.min(lw, s.w - 24 - ind), 3);
+      }
+    }
+  }
+
+  function drawStreams(){
+    for (var i = 0; i < streams.length; i++) {
+      var s = streams[i];
+      ctx.strokeStyle = "rgba(244,63,94,0.14)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(-50, s.y0);
+      ctx.bezierCurveTo(W*.3, s.y0 - s.amp, W*.6, s.y0 + s.amp, W + 50, s.y0);
+      ctx.stroke();
+      var p = (s.ph + t*s.sp) % 1;
+      var x = bez(p, -50, W*.3, W*.6, W + 50), y = bez(p, s.y0, s.y0 - s.amp, s.y0 + s.amp, s.y0);
+      ctx.fillStyle = "rgba(244,63,94,0.6)";
+      ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  function drawNodes(){
+    for (var i = 0; i < nodes.length; i++) {
       var a = nodes[i];
       a.x += a.vx; a.y += a.vy;
       if (a.x < 0 || a.x > W) a.vx *= -1;
       if (a.y < 0 || a.y > H) a.vy *= -1;
-      for (var j = i + 1; j < N; j++) {
+      for (var j = i + 1; j < nodes.length; j++) {
         var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx*dx + dy*dy);
-        if (d < LINK) {
-          ctx.strokeStyle = "rgba(148,163,184," + (0.22 * (1 - d / LINK)).toFixed(3) + ")";
-          ctx.lineWidth = 1;
+        if (d < 130) {
+          ctx.strokeStyle = "rgba(148,163,184," + (.1 * (1 - d/130)).toFixed(3) + ")";
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         }
       }
+      ctx.fillStyle = "rgba(148,163,184,0.35)";
+      ctx.beginPath(); ctx.arc(a.x, a.y, 1.4, 0, Math.PI*2); ctx.fill();
     }
-    for (var k = 0; k < N; k++) {
-      var n = nodes[k];
-      ctx.fillStyle = n.r > 2 ? "rgba(244,63,94,.55)" : "rgba(148,163,184,.5)";
-      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill();
-    }
+  }
+
+  function frame(){
+    ctx.clearRect(0, 0, W, H);
+    t++;
+    drawBinary();
+    drawScreens();
+    drawStreams();
+    drawNodes();
     if (!reduce) requestAnimationFrame(frame);
   }
-  init(); frame();
-  window.addEventListener("resize", function(){ init(); if (reduce) frame(); });
+
+  build(); frame();
+  window.addEventListener("resize", function(){ build(); if (reduce) frame(); });
 })();
 </script>
 </body>
