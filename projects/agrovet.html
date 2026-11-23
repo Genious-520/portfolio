@@ -24,6 +24,25 @@ h1{font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:10px 0 14px;letter-spac
 .block h2{font-size:1.2rem;margin-bottom:8px}
 .block p,.block li{color:var(--muted);max-width:66ch}
 .block ul{padding-left:18px;display:grid;gap:6px}
+/* DARK-SYSTEMS */
+:root{--bg:#0b1020;--surface:#111827;--border:#1f2937;--text:#f3f4f6;--muted:#9ca3af;--soft:#8b93a7;--accent:#f43f5e;color-scheme:dark}
+html,body{background:#0b1020 !important;color:var(--text)}
+header{background:rgba(11,16,32,.82) !important;border-bottom:1px solid var(--border) !important}
+.card,.svc,.stat,.skill,.timeline>div{background:rgba(17,24,39,.72) !important;border-color:var(--border) !important}
+.card:hover{border-color:#334155 !important}
+.tag{background:transparent !important;border-color:#334155 !important;color:#cbd5e1 !important}
+.btn,.btn-primary{color:#fff}
+.btn{background:rgba(17,24,39,.6) !important;border-color:#334155 !important}
+.btn-primary{background:var(--accent) !important;border-color:var(--accent) !important}
+.btn-primary:hover{background:#be123c !important;border-color:#be123c !important}
+.lang-btn{background:rgba(17,24,39,.8) !important;color:var(--text) !important;border-color:#334155 !important}
+.card p,.about-grid p,.lead,.hero p.lead,.stat span,.timeline p,.block p,.block li{color:var(--muted) !important}
+.card h3,.timeline h3,h1,h2,h3,.logo{color:var(--text)}
+.card-links a{color:var(--text) !important;border-color:#334155 !important}
+footer{border-color:var(--border) !important;color:var(--soft) !important}
+.progress{background:var(--accent) !important}
+#net-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.9}
+.hero::before,.hero::after{display:none !important}
 </style>
 </head>
 <body>
@@ -38,5 +57,54 @@ h1{font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:10px 0 14px;letter-spac
   <div class="block"><h2>What it does</h2><ul><li>Business management for agrovet operations.</li><li>Stock and records in one place instead of paper.</li></ul></div>
   <div class="block"><h2>How it's built</h2><p>Full-stack web app deployed on Vercel.</p></div>
 </div>
+<script>/* DARK-SYSTEMS */
+(function(){
+  if (document.getElementById("net-bg")) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var c = document.createElement("canvas");
+  c.id = "net-bg";
+  document.body.insertBefore(c, document.body.firstChild);
+  var ctx = c.getContext("2d"), W, H, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+  var N = window.innerWidth < 700 ? 38 : 70, LINK = 150;
+  function size(){
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = W * dpr; c.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function init(){
+    size(); nodes = [];
+    for (var i = 0; i < N; i++) nodes.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+      r: Math.random() < .15 ? 2.2 : 1.4
+    });
+  }
+  function frame(){
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < N; i++) {
+      var a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if (a.x < 0 || a.x > W) a.vx *= -1;
+      if (a.y < 0 || a.y > H) a.vy *= -1;
+      for (var j = i + 1; j < N; j++) {
+        var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx*dx + dy*dy);
+        if (d < LINK) {
+          ctx.strokeStyle = "rgba(148,163,184," + (0.22 * (1 - d / LINK)).toFixed(3) + ")";
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    for (var k = 0; k < N; k++) {
+      var n = nodes[k];
+      ctx.fillStyle = n.r > 2 ? "rgba(244,63,94,.55)" : "rgba(148,163,184,.5)";
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  init(); frame();
+  window.addEventListener("resize", function(){ init(); if (reduce) frame(); });
+})();
+</script>
 </body>
 </html>
