@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="gueMvRLkwSRT38pGdTjQZ1rqvKGTGYZxrc5sPCWUYZE" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work | Amos Zabron Mhema</title>
+<meta name="description" content="Amos Zabron Mhema (Genious), full-stack developer from Tanzania.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#ffffff; --surface:#f8f9fb; --border:#e5e7eb; --text:#111827; --muted:#4b5563; --soft:#6b7280; --accent:#111827; --ink:#111827; color-scheme:light; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; scroll-padding-top:80px; }
+body { font-family:Inter,system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+h1,h2,h3 { font-family:"Space Grotesk",Inter,system-ui,sans-serif; line-height:1.15; letter-spacing:-.02em; font-weight:600; }
+a { color:inherit; text-decoration:none; }
+.wrap { width:min(1080px,90%); margin:0 auto; }
+section { padding:64px 0; }
+.eyebrow { display:block; font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--soft); margin-bottom:10px; }
+.section-title { font-size:clamp(1.8rem,3.6vw,2.4rem); margin-bottom:28px; max-width:20ch; }
+
+header { position:fixed; top:0; left:0; right:0; z-index:50; padding-top:env(safe-area-inset-top,0px); background:rgba(255,255,255,.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+.nav { display:flex; justify-content:space-between; align-items:center; height:60px; gap:12px; }
+.logo { font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:1.1rem; }
+.logo span { color:var(--soft); }
+.nav-right { display:flex; align-items:center; gap:22px; font-size:.9rem; color:var(--muted); }
+.nav-right a:hover { color:var(--text); }
+.lang-btn { font:inherit; font-size:.78rem; font-weight:600; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:6px 12px; cursor:pointer; }
+.lang-btn:hover { border-color:var(--text); }
+@media (max-width:640px) { .nav-right a:not(.keep) { display:none; } }
+
+.hero { min-height:auto; display:flex; align-items:center; padding:120px 0 56px; }
+.status { display:inline-flex; align-items:center; gap:8px; font-size:.85rem; color:var(--muted); border:1px solid var(--border); border-radius:6px; padding:5px 12px; margin-bottom:22px; background:var(--surface); }
+.dot { width:7px; height:7px; border-radius:50%; background:#16a34a; }
+.hero h1 { font-size:clamp(2.6rem,6.5vw,4.6rem); font-weight:700; line-height:1.05; letter-spacing:-.035em; margin-bottom:20px; max-width:18ch; }
+.grad { color:var(--soft); }
+.hero p.lead { font-size:1.08rem; color:var(--muted); max-width:58ch; margin-bottom:26px; }
+.cta { display:flex; flex-wrap:wrap; gap:10px; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:11px 20px; border-radius:8px; font-weight:600; font-size:.95rem; border:1px solid var(--border); background:var(--bg); transition:border-color .2s, background .2s; }
+.btn:hover { border-color:var(--text); }
+.btn-primary { background:var(--accent); color:#ffffff; border-color:var(--accent); }
+.btn-primary:hover { background:#374151; border-color:#374151; color:#ffffff; }
+
+.marquee { display:none; }
+
+.about-grid { display:grid; grid-template-columns:1fr; gap:36px; align-items:center; }
+@media (min-width:860px) { .about-grid { grid-template-columns:.85fr 1.15fr; gap:56px; } }
+.about-photo { width:100%; max-width:280px; display:block; border-radius:12px; border:1px solid var(--border); }
+.about-grid p { color:var(--muted); margin-bottom:12px; font-size:1rem; }
+.stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:22px; }
+.stat { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; }
+.stat strong { display:block; font-family:"Space Grotesk",sans-serif; font-size:1.8rem; line-height:1.1; color:var(--text); margin-bottom:4px; }
+.stat span { color:var(--muted); font-size:.88rem; }
+
+.timeline { display:grid; gap:0; max-width:700px; border-left:1px solid var(--border); padding-left:28px; margin-left:6px; }
+.timeline > div { position:relative; padding:0 0 20px; }
+.timeline > div:last-child { padding-bottom:0; }
+.timeline > div::before { content:""; position:absolute; left:-33px; top:8px; width:9px; height:9px; border-radius:50%; background:var(--text); box-shadow:0 0 0 4px var(--bg); }
+.timeline .role { font-size:.8rem; font-weight:600; color:var(--soft); }
+.timeline h3 { font-size:1.15rem; margin:4px 0 2px; }
+.timeline p { color:var(--muted); font-size:.95rem; }
+
+.projects { display:grid; gap:12px; }
+.card { position:relative; display:grid; grid-template-columns:auto 1fr; column-gap:20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:22px 24px; transition:border-color .2s, box-shadow .2s; }
+.card:hover { border-color:#d1d5db; box-shadow:0 4px 14px rgba(17,24,39,.06); }
+.idx { grid-row:span 7; font-family:"Space Grotesk",sans-serif; font-size:.9rem; font-weight:600; color:var(--soft); padding-top:4px; }
+.card .role { font-size:.78rem; font-weight:600; color:var(--soft); }
+.card h3 { font-size:1.35rem; margin:6px 0 6px; }
+.card p { color:var(--muted); font-size:.95rem; max-width:62ch; }
+.card .problem { color:var(--text); border-left:2px solid var(--text); padding-left:12px; margin-bottom:8px; }
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.tag { font-size:.76rem; font-weight:500; padding:3px 10px; border-radius:6px; background:var(--surface); border:1px solid var(--border); color:var(--muted); }
+.card-links { display:flex; gap:18px; flex-wrap:wrap; margin-top:12px; font-weight:600; font-size:.9rem; }
+.card-links a { color:var(--text); border-bottom:1px solid var(--border); padding-bottom:1px; }
+.card-links a:hover { border-color:var(--text); }
+@media (max-width:560px) { .card { grid-template-columns:1fr; padding:20px; } .idx { grid-row:auto; margin-bottom:4px; } }
+
+.skills { display:flex; flex-wrap:wrap; gap:8px; }
+.skill { padding:7px 14px; border-radius:6px; background:var(--surface); border:1px solid var(--border); font-size:.9rem; color:var(--muted); }
+
+.contact .section-title { font-size:clamp(2rem,4.5vw,2.8rem); margin-bottom:12px; }
+.contact p { color:var(--muted); max-width:52ch; margin-bottom:24px; font-size:1rem; }
+.socials { display:flex; flex-wrap:wrap; gap:10px; }
+footer { padding:28px 0; color:var(--soft); font-size:.85rem; border-top:1px solid var(--border); }
+
+.reveal { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } .reveal { opacity:1; transform:none; } }
+
+/* Gen Z professional touches: bold type, one warm accent, pill details */
+h1,h2,h3 { font-weight:700; letter-spacing:-.035em; }
+.hero h1 { font-size:clamp(2.8rem,7.5vw,5.2rem); line-height:1; }
+.grad { color:var(--ink); background:linear-gradient(transparent 62%, rgba(17,24,39,.08) 62%); padding:0 .05em; }
+.status { border-radius:999px; padding:6px 14px; border-color:transparent; background:#f3f4f6; color:#111827; font-weight:500; }
+.dot { background:var(--accent); }
+.eyebrow { color:var(--accent); font-weight:700; }
+.btn { border-radius:999px; padding:12px 22px; }
+.btn-primary { background:var(--ink); border-color:var(--ink); }
+.btn-primary:hover { background:var(--accent); border-color:var(--accent); }
+.btn:not(.btn-primary):hover { border-color:var(--accent); color:var(--accent); }
+.stat { border-radius:14px; }
+.stat strong { color:var(--ink); }
+.stat:hover { border-color:var(--accent); }
+.timeline > div::before { background:var(--accent); }
+.timeline .role { color:var(--accent); }
+.card { border-radius:16px; overflow:hidden; }
+.card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); transform:scaleY(0); transform-origin:top; transition:transform .25s ease; }
+.card:hover::before { transform:scaleY(1); }
+.card:hover { border-color:#d1d5db; }
+.idx { color:var(--accent); }
+.card .role { color:var(--accent); }
+.card .problem { border-left-color:var(--accent); }
+.tag { border-radius:999px; background:#f3f4f6; border-color:transparent; color:var(--ink); }
+.card-links a { border-bottom:2px solid var(--accent); }
+.card-links a:hover { color:var(--accent); }
+.skill { border-radius:999px; color:var(--ink); }
+.skill:hover { border-color:var(--accent); color:var(--accent); }
+.contact .section-title { font-size:clamp(2.6rem,6.5vw,4.4rem); letter-spacing:-.045em; line-height:1; }
+.lang-btn { border-radius:999px; }
+.lang-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+/* Calm pass: remove visual noise, keep accent for only a few details */
+.grad { background:none; padding:0; color:var(--ink); }
+.status { background:var(--surface); color:var(--muted); border-color:var(--border); font-weight:500; }
+.eyebrow { color:var(--soft); font-weight:600; }
+.idx { color:var(--soft); }
+.card .role { color:var(--soft); }
+.card::before { display:none; }
+.card:hover { box-shadow:none; border-color:var(--border); }
+.card .problem { border-left-color:var(--border); }
+.tag { background:transparent; border:1px solid var(--border); color:var(--muted); }
+.card-links a { border-bottom:1px solid var(--border); }
+.card-links a:hover { color:var(--accent); border-color:var(--accent); }
+.timeline .role { color:var(--soft); }
+.timeline > div::before { background:var(--ink); }
+.stat:hover { border-color:var(--border); }
+.skill { color:var(--muted); }
+.skill:hover { border-color:var(--border); color:var(--text); }
+.btn:not(.btn-primary):hover { border-color:var(--border); color:var(--text); }
+.lang-btn:hover { border-color:var(--border); color:var(--text); }
+.btn-primary { background:var(--accent); border-color:var(--accent); }
+.btn-primary:hover { background:#374151; border-color:#374151; }
+.hero { padding:110px 0 48px; }
+
+/* Playful but professional: blinking caret after the name, underline sweep on nav links */
+@keyframes caret { 50% { opacity:0; } }
+.hero h1 .grad::after { content:"_"; color:var(--soft); margin-left:4px; animation:caret 1s steps(2) infinite; font-weight:400; }
+.nav-right a, .card-links a { background:linear-gradient(currentColor,currentColor) no-repeat 0 100% / 0 1px; transition:background-size .3s ease; padding-bottom:2px; }
+.nav-right a:hover, .card-links a:hover { background-size:100% 1px; }
+.card-links a { border-bottom:none; }
+.card-links a:hover { color:var(--text); }
+
+/* Restore a single restrained color: deep burgundy, used on a few details only */
+:root { --accent:#9f1239; }
+.dot { background:var(--accent); }
+.eyebrow { color:var(--accent); }
+.idx { color:var(--accent); }
+.timeline .role { color:var(--accent); }
+.timeline > div::before { background:var(--accent); }
+.card .problem { border-left-color:var(--accent); }
+.btn-primary { background:var(--accent); border-color:var(--accent); }
+.btn-primary:hover { background:#881337; border-color:#881337; }
+.card-links a:hover, .nav-right a:hover { color:var(--accent); }
+.lang-btn:hover { border-color:var(--accent); color:var(--accent); }
+.hero h1 .grad::after { color:var(--accent); }
+.svc-grid{display:grid;gap:12px}@media(min-width:800px){.svc-grid{grid-template-columns:repeat(3,1fr)}}.svc{border:1px solid var(--border);border-radius:12px;padding:22px;background:var(--bg)}.svc h3{font-size:1.15rem;margin-bottom:8px}.svc p{color:var(--muted);font-size:.95rem}</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav">
+    <a href="index.html" class="logo">Amos<span>.</span></a>
+    <div class="nav-right">
+      <a href="index.html#about"><span data-i18n="nav_about">About</span></a>
+      <a href="index.html#education"><span data-i18n="nav_edu">Education</span></a>
+      <a href="index.html#projects"><span data-i18n="nav_projects">Projects</span></a>
+      <a href="work.html" class="keep" data-i18n="nav_work">Work</a>
+      <a href="index.html#skills" class="keep"><span data-i18n="nav_skills">Skills</span></a>
+      <a href="index.html#contact"><span data-i18n="nav_contact">Contact</span></a>
+      <button class="lang-btn" id="langBtn" type="button"><span data-i18n="lang_btn">SW</span></button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section style="padding-top:120px">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="work_eyebrow">Work</span>
+      <h1 class="section-title" data-i18n="work_title">All projects</h1>
+      <div class="projects">
+        <article class="card"><span class="idx">01</span>
+          <span class="role" data-i18n="church_role">Full-stack · Community</span>
+          <h3>Church Management System</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="church_problem">Church offices juggle members, giving, and departments on paper and spreadsheets.</span></p>
+          <p data-i18n="church_desc">Role-based system for Elders, Treasurers, Deacons, and Clerks, with member, department, and giving management.</p>
+          <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">Role-based access</span></div>
+          <div class="card-links"><a href="https://kambarage-sda-church.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+        </article>
+        <article class="card"><span class="idx">02</span>
+          <span class="role" data-i18n="aea_role">Full-stack · Education</span>
+          <h3>AEA Learning Portal</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="aea_problem">Students need course resources in one organized place.</span></p>
+          <p data-i18n="aea_desc">Digital resource portal for SUA's Agricultural Economics and Agribusiness course.</p>
+          <div class="tags"><span class="tag">Full-stack</span><span class="tag">Vercel</span></div>
+          <div class="card-links"><a href="https://aea-portal.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+        </article>
+        <article class="card"><span class="idx">03</span>
+          <span class="role" data-i18n="mhema_role">Full-stack · Agriculture</span>
+          <h3>Mhema Avocado Garden</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="mhema_problem">Avocado seedling (miche) nurseries track seed procurement and seedbeds by hand.</span></p>
+          <p data-i18n="mhema_desc">Nursery management system for avocado seedlings, currently in active development.</p>
+          <div class="tags"><span class="tag">Full-stack</span><span class="tag">Procurement</span><span class="tag">Seedbeds</span></div>
+          <div class="card-links"><a href="https://mhema-avocado-garden.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+        </article>
+        <article class="card"><span class="idx">04</span>
+          <span class="role" data-i18n="clinic_role">Full-stack · Healthcare</span>
+          <h3>Hospital Management System</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="clinic_problem">Clinics need one system to manage patients, staff, and records without paper.</span></p>
+          <p data-i18n="clinic_desc">A hospital management system with role-based access, live in production.</p>
+          <div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">MUI</span><span class="tag">PostgreSQL</span></div>
+          <div class="card-links"><a href="https://genious-hospital.netlify.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+        </article>
+        <article class="card"><span class="idx">05</span>
+          <span class="role" data-i18n="stock_role">Full-stack · Retail & POS</span>
+          <h3>Genious Stock</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="stock_problem">Small shops lose money to untracked stock and manual sales records.</span></p>
+          <p data-i18n="stock_desc">Inventory and point-of-sale system with a bilingual interface and TRA-compliant reporting.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Inventory</span><span class="tag">POS</span><span class="tag">i18n</span></div>
+          <div class="card-links"><a href="projects/genious-stock.html">Case study &nearr;</a></div>
+        </article>
+        <article class="card"><span class="idx">06</span>
+          <span class="role" data-i18n="agrovet_role">Full-stack · Agrovet</span>
+          <h3>Agrovet Management App</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="agrovet_problem">Agrovet operations need their stock and records kept in one digital system.</span></p>
+          <p data-i18n="agrovet_desc">Business management app for agrovet operations, live on Vercel.</p>
+          <div class="tags"><span class="tag">Full-stack</span><span class="tag">Vercel</span></div>
+          <div class="card-links"><a href="https://mhema-pearl.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+        </article>
+        <article class="card"><span class="idx">07</span>
+          <span class="role" data-i18n="azama_role">Full-stack · Agribusiness</span>
+          <h3>Azama Agribiz Ledger</h3>
+          <p class="problem"><strong><span data-i18n="problem">Problem:</span></strong> <span data-i18n="azama_problem">Farmers and agribusinesses need to track produce from farm to market.</span></p>
+          <p data-i18n="azama_desc">Farm-to-market management system for GENIOUS-OPEX ENTERPRISES, covering production, sales, and records.</p>
+          <div class="tags"><span class="tag">Full-stack</span><span class="tag">PostgreSQL</span><span class="tag">Vercel</span></div>
+          <div class="card-links"><a href="https://agribiz-six.vercel.app" target="_blank" rel="noopener"><span data-i18n="live">Live demo</span> ↗</a></div>
+        </article>
+            </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Amos Zabron Mhema (Genious). <span data-i18n="footer">Built with care, from Tanzania.</span></div>
+</footer>
+
+<script>
+  const T = {"en": {"nav_about": "About", "nav_edu": "Education", "nav_projects": "Projects", "nav_skills": "Skills", "nav_contact": "Contact", "lang_btn": "SW", "hero_status": "Open to freelance & full-time work", "hero_h1": "Hi, I'm <span class=\"grad\">Amos.</span><br>I build full-stack apps that run businesses.", "hero_lead": "Full-stack developer from Tanzania. I design, build, and deploy production systems for hospitals, stock management, agribusiness, and churches, all shipped from an Android phone.", "cta_work": "See my work", "cta_contact": "Get in touch", "about_eyebrow": "About", "about_title": "Code that solves real problems.", "about_p1": "I'm Amos Zabron Mhema. I study Agricultural Economics and Agribusiness at Sokoine University of Agriculture (SUA), and I'm also working toward a Computer Science degree at University of the People. I run my own venture, GENIOUS-OPEX ENTERPRISES.", "about_p2": "I believe the best software comes from understanding the problem first. That's why my projects focus on real operations: inventory, patient records, farm-to-market flows, and community management.", "about_p3": "My setup is unusual: I build and maintain full-stack apps entirely from an Android device using Termux and Ubuntu, deploying backends to Render and frontends to Vercel and Netlify.", "stat1": "Projects shown here", "stat2": "Stack, front to back", "stat3": "Neon PostgreSQL databases", "stat4": "Deploy platforms: Render, Vercel, Netlify", "edu_eyebrow": "Education", "edu_title": "Where I study", "uop_role": "2025 to 2029", "uop_desc": "Computer Science, degree in progress.", "sua_role": "2024 to 2027", "sua_desc": "Agricultural Economics and Agribusiness, Morogoro, Tanzania.", "tun_role": "2022 to 2024", "tun_desc": "Advanced level secondary education.", "kaw_role": "2018 to 2021", "kaw_desc": "Secondary education.", "isi_role": "2017", "isi_desc": "Secondary education.", "mpe_role": "2010 to 2016", "mpe_desc": "Primary education.", "proj_eyebrow": "Selected work", "proj_title": "Projects", "live": "Live demo", "code": "Code", "problem": "Problem:", "skills_eyebrow": "Toolkit", "skills_title": "What I work with", "contact_eyebrow": "Contact", "contact_title": "Let's build something.", "contact_p": "Have a system to build, a product to launch, or an idea to turn into software? Reach out and let's talk.", "email_biz": "genious.sua@gmail.com (business)", "footer": "Built with care, from Tanzania.", "sua_extra": "Parallel: Computer Science at University of the People (2025 to 2029).", "church_role": "Full-stack · Community", "church_problem": "Church offices juggle members, giving, and departments on paper and spreadsheets.", "church_desc": "Role-based system for Elders, Treasurers, Deacons, and Clerks, with member, department, and giving management.", "aea_role": "Full-stack · Education", "aea_problem": "Students need course resources in one organized place.", "aea_desc": "Digital resource portal for SUA's Agricultural Economics and Agribusiness course.", "mhema_role": "Full-stack · Agriculture", "mhema_problem": "Avocado seedling (miche) nurseries track seed procurement and seedbeds by hand.", "mhema_desc": "Nursery management system for avocado seedlings, currently in active development.", "clinic_role": "Full-stack · Healthcare", "clinic_problem": "Clinics need one system to manage patients, staff, and records without paper.", "clinic_desc": "A hospital management system with role-based access, live in production.", "stock_role": "Full-stack · Retail & POS", "stock_problem": "Small shops lose money to untracked stock and manual sales records.", "stock_desc": "Inventory and point-of-sale system with a bilingual interface and TRA-compliant reporting.", "agrovet_role": "Full-stack · Agrovet", "agrovet_problem": "Agrovet operations need their stock and records kept in one digital system.", "agrovet_desc": "Business management app for agrovet operations, live on Vercel.", "azama_role": "Full-stack · Agribusiness", "azama_problem": "Farmers and agribusinesses need to track produce from farm to market.", "azama_desc": "Farm-to-market management system for GENIOUS-OPEX ENTERPRISES, covering production, sales, and records.", "nav_work": "Work", "svc_eyebrow": "What I build", "svc_title": "Systems for real businesses.", "svc1_t": "Shop & stock systems", "svc1_p": "Inventory, point of sale, sales records and reports for shops and agrovets.", "svc2_t": "Institution systems", "svc2_p": "Member, staff and records management for churches, clinics and student groups.", "svc3_t": "Deploy & maintain", "svc3_p": "Backend on Render, frontend on Vercel or Netlify, with updates after launch.", "work_eyebrow": "Work", "work_title": "All projects"}, "sw": {"nav_about": "Kuhusu", "nav_edu": "Elimu", "nav_projects": "Miradi", "nav_skills": "Ujuzi", "nav_contact": "Mawasiliano", "lang_btn": "EN", "hero_status": "Niko tayari kwa kazi za freelance na za kudumu", "hero_h1": "Habari, mimi ni <span class=\"grad\">Amos.</span><br>Ninajenga mifumo kamili inayoendesha biashara.", "hero_lead": "Full-stack developer kutoka Tanzania. Ninabuni, kujenga na kuweka mifumo halisi kwa hospitali, stoo, kilimo na makanisa, yote nikitumia simu ya Android.", "cta_work": "Angalia kazi zangu", "cta_contact": "Wasiliana nami", "about_eyebrow": "Kuhusu", "about_title": "Code inayotatua matatizo halisi.", "about_p1": "Mimi ni Amos Zabron Mhema. Ninasoma Agricultural Economics and Agribusiness Sokoine University of Agriculture (SUA), pia nasoma Computer Science University of the People, na ninaendesha kampuni yangu, GENIOUS-OPEX ENTERPRISES.", "about_p2": "Naamini programu bora zinaanza kwa kuelewa tatizo kwanza. Ndiyo maana miradi yangu inalenga shughuli halisi: stoo, rekodi za wagonjwa, mazao kutoka shambani hadi sokoni, na usimamizi wa jumuiya.", "about_p3": "Mazingira yangu ya kazi ni tofauti kidogo: ninajenga na kutunza mifumo kamili kwa kutumia simu ya Android, Termux na Ubuntu, na ninaweka backend kwenye Render na frontend kwenye Vercel na Netlify.", "stat1": "Miradi iliyoonyeshwa hapa", "stat2": "Stack kamili, mbele hadi nyuma", "stat3": "Database za Neon PostgreSQL", "stat4": "Majukwaa ya deploy: Render, Vercel, Netlify", "edu_eyebrow": "Elimu", "edu_title": "Ninakosoma wapi", "uop_role": "2025 hadi 2029", "uop_desc": "Computer Science, shahada inaendelea.", "sua_role": "2024 hadi 2027", "sua_desc": "Agricultural Economics and Agribusiness, Morogoro, Tanzania.", "tun_role": "2022 hadi 2024", "tun_desc": "Elimu ya sekondari ya juu (A-Level).", "kaw_role": "2018 hadi 2021", "kaw_desc": "Elimu ya sekondari.", "isi_role": "2017", "isi_desc": "Elimu ya sekondari.", "mpe_role": "2010 hadi 2016", "mpe_desc": "Elimu ya msingi.", "proj_eyebrow": "Kazi zilizochaguliwa", "proj_title": "Miradi", "live": "Tazama demo", "code": "Code", "problem": "Tatizo:", "skills_eyebrow": "Zana", "skills_title": "Ninavyotumia", "contact_eyebrow": "Mawasiliano", "contact_title": "Tujenge kitu.", "contact_p": "Una mfumo wa kujenga, bidhaa ya kuzindua, au wazo la kugeuza kuwa programu? Tuzungumze.", "email_biz": "genious.sua@gmail.com (biashara)", "footer": "Imejengwa kwa uangalifu, kutoka Tanzania.", "sua_extra": "Pia nasoma: Computer Science University of the People (2025 hadi 2029).", "church_role": "Full-stack · Jumuiya", "church_problem": "Ofisi za kanisa zinahangaika na wanachama, michango na idara kwenye karatasi na spreadsheets.", "church_desc": "Mfumo wenye majukumu kwa Wazee, Watunza Hazina, Madiakoni na Makarani, wenye usimamizi wa wanachama, idara na michango.", "aea_role": "Full-stack · Elimu", "aea_problem": "Wanafunzi wanahitaji rasilimali za kozi sehemu moja iliyopangwa.", "aea_desc": "Tovuti ya rasilimali za kidijitali kwa kozi ya Agricultural Economics and Agribusiness SUA.", "mhema_role": "Full-stack · Kilimo", "mhema_problem": "Vitalu vya miche ya parachichi vinafuatilia ununuzi wa mbegu na vitalu kwa mkono.", "mhema_desc": "Mfumo wa usimamizi wa kitalu cha miche ya parachichi, unaoendelea kujengwa.", "clinic_role": "Full-stack · Afya", "clinic_problem": "Zahanati zinahitaji mfumo mmoja wa kusimamia wagonjwa, wafanyakazi na rekodi bila karatasi.", "clinic_desc": "Mfumo wa usimamizi wa hospitali wenye ruhusa kulingana na majukumu, unafanya kazi moja kwa moja.", "stock_role": "Full-stack · Rejareja na POS", "stock_problem": "Maduka madogo yanapoteza pesa kwa stoo isiyofuatiliwa na rekodi za mauzo za mkono.", "stock_desc": "Mfumo wa stoo na mauzo wenye lugha mbili na ripoti zinazokidhi TRA.", "agrovet_role": "Full-stack · Agrovet", "agrovet_problem": "Biashara za agrovet zinahitaji stoo na rekodi zake kwenye mfumo mmoja wa kidijitali.", "agrovet_desc": "Programu ya usimamizi wa biashara ya agrovet, inafanya kazi kwenye Vercel.", "azama_role": "Full-stack · Kilimo biashara", "azama_problem": "Wakulima na biashara za kilimo wanahitaji kufuatilia mazao kutoka shambani hadi sokoni.", "azama_desc": "Mfumo wa usimamizi wa mazao kutoka shambani hadi sokoni kwa GENIOUS-OPEX ENTERPRISES, unaogusa uzalishaji, mauzo na rekodi.", "nav_work": "Kazi", "svc_eyebrow": "Ninachojenga", "svc_title": "Mifumo kwa biashara halisi.", "svc1_t": "Mifumo ya duka na stoo", "svc1_p": "Stoo, POS, rekodi za mauzo na ripoti kwa maduka na maagrovet.", "svc2_t": "Mifumo ya taasisi", "svc2_p": "Usimamizi wa wanachama, wafanyakazi na rekodi za makanisa, zahanati na vikundi vya wanafunzi.", "svc3_t": "Kuweka mtandaoni na matengenezo", "svc3_p": "Backend kwenye Render, frontend kwenye Vercel au Netlify, pamoja na matengenezo baada ya kuzindua.", "work_eyebrow": "Kazi", "work_title": "Miradi yote"}};
+  const KEY = "portfolio-lang";
+  function applyLang(lang) {
+    const dict = T[lang] || T.en;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      if (dict[el.dataset.i18n] !== undefined) el.innerHTML = dict[el.dataset.i18n];
+    });
+    document.getElementById("langBtn").innerHTML = lang === "en" ? T.sw.lang_btn : T.en.lang_btn;
+  }
+  let current = "en";
+  try { current = localStorage.getItem(KEY) || "en"; } catch (e) {}
+  applyLang(current);
+  document.getElementById("langBtn").addEventListener("click", () => {
+    current = current === "en" ? "sw" : "en";
+    try { localStorage.setItem(KEY, current); } catch (e) {}
+    applyLang(current);
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add("in"); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach((el) => io.observe(el));
+  } else {
+    items.forEach((el) => el.classList.add("in"));
+  }
+</script>
+</body>
+</html>
