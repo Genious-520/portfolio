@@ -199,6 +199,11 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
 .btn-primary:hover{background:#d1d5db !important;border-color:#d1d5db !important}
 .hero h1 .grad{color:#f3f4f6 !important}
 .eyebrow{color:#9ca3af !important}
+
+/* POLISH-V1 */
+html{background:#0f1115 !important}
+footer{margin-top:0 !important;border-top:0 !important;padding:24px 0 36px !important}
+.contact + footer, section.contact ~ footer{border-top:1px solid #262626 !important}
 </style>
 </head>
 <body>
@@ -285,7 +290,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
   </section>
 </main>
 
-<footer>
+<div style="height:0"></div><footer>
   <div class="wrap">© <span id="year"></span> Amos Zabron Mhema (Genious). <span data-i18n="footer">Built with care, from Tanzania.</span></div>
 </footer>
 
@@ -346,7 +351,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
     cols = [];
     for (var i = 0; i < n; i++) cols.push({ x: i*colW + 4, y: Math.random()*H, v: .35 + Math.random()*.9 });
 
-    var sw = Math.min(W * (mobile ? .42 : .24), 260), sh = sw * .6, by = H - sh - 70;
+    var sw = Math.min(W * (mobile ? .32 : .18), 200), sh = sw * .55, by = H - sh - 150;
     screens = mobile
       ? [{x: W*.5 - sw/2, y: by, w: sw, h: sh}]
       : [{x: W*.08, y: by + 20, w: sw*.9, h: sh*.9}, {x: W*.5 - sw/2, y: by, w: sw, h: sh}, {x: W*.92 - sw*.9, y: by + 20, w: sw*.9, h: sh*.9}];
@@ -365,7 +370,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
 
   function drawBinary(){
     ctx.font = "12px ui-monospace, Menlo, Consolas, monospace";
-    ctx.fillStyle = "rgba(255,255,255,0.10)";
+    ctx.fillStyle = "rgba(255,255,255,0.22)";
     for (var i = 0; i < cols.length; i++) {
       var col = cols[i];
       ctx.fillText(CH.charAt(Math.floor(Math.random()*CH.length)), col.x, col.y);
@@ -377,7 +382,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
   function drawScreens(){
     for (var i = 0; i < screens.length; i++) {
       var s = screens[i];
-      ctx.fillStyle = "rgba(255,255,255,0.03)";
+      ctx.fillStyle = "rgba(255,255,255,0.05)";
       ctx.fillRect(s.x, s.y, s.w, s.h);
       ctx.strokeStyle = "rgba(148,163,184,0.25)";
       ctx.lineWidth = 1.2;
@@ -390,7 +395,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
         var ly = s.y + ((k*16 + t*.6) % (s.h - 12)) + 6;
         var ind = (k % 3) * 12;
         var lw = 18 + ((k*37 + i*19) % 60) * (s.w / 130);
-        ctx.fillStyle = (k % 5 === 0) ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.14)";
+        ctx.fillStyle = (k % 5 === 0) ? "rgba(255,255,255,0.26)" : "rgba(255,255,255,0.24)";
         ctx.fillRect(s.x + 12 + ind, ly, Math.min(lw, s.w - 24 - ind), 3);
       }
     }
@@ -399,7 +404,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
   function drawStreams(){
     for (var i = 0; i < streams.length; i++) {
       var s = streams[i];
-      ctx.strokeStyle = "rgba(255,255,255,0.10)";
+      ctx.strokeStyle = "rgba(255,255,255,0.22)";
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(-50, s.y0);
@@ -425,7 +430,7 @@ footer{background:transparent !important;border-top:1px solid #262626 !important
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         }
       }
-      ctx.fillStyle = "rgba(148,163,184,0.35)";
+      ctx.fillStyle = "rgba(148,163,184,0.55)";
       ctx.beginPath(); ctx.arc(a.x, a.y, 1.4, 0, Math.PI*2); ctx.fill();
     }
   }
